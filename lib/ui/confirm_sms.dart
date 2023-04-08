@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:test_application/repository/Repository.dart';
 import 'package:test_application/ui/image_list.dart';
 
 class Confirm extends StatefulWidget {
@@ -79,13 +80,13 @@ class ConfirmState extends State<Confirm> {
         ));
   }
 
-  void onEnd() {
+  onEnd() {
     setState(() {
       showResendSms = true;
     });
   }
 
-  void resendSms() {
+  resendSms() {
     setState(() {
       showProgress = true;
     });
@@ -101,8 +102,9 @@ class ConfirmState extends State<Confirm> {
             });
   }
 
-  void sendSms() {
+  sendSms() {
     if (_confirmController.text == "1111") {
+      Repository().setRegistration();
       Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (BuildContext context) => const ImageList()));
     } else {
